@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('brands','BrandController');
 Route::resource('articles','ArticleController');
 
 Route::resource('categories','CategoryController');
