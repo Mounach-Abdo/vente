@@ -15,4 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 Route::resource('brands','brandController');
+=======
+Route::resource('articles','ArticleController');
+
+Route::resource('categories','CategoryController');
+>>>>>>> 6644799c10830811473fe05aae1410916222a58a
