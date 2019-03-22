@@ -304,10 +304,10 @@
                     "homepage": "http://erusev.com"
                 }
             ],
-            "description": "Parser for Markdown.",
+            "description": "Parser for branddown.",
             "homepage": "http://parsedown.org",
             "keywords": [
-                "markdown",
+                "branddown",
                 "parser"
             ],
             "time": "2019-03-17T17:19:46+00:00"
@@ -566,7 +566,7 @@
                 "symfony/css-selector": "Required to use some of the crawler integration testing tools (^4.2).",
                 "symfony/dom-crawler": "Required to use most of the crawler integration testing tools (^4.2).",
                 "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^1.1).",
-                "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
+                "wildbit/swiftmailer-postbrand": "Required to use Postbrand mail driver (^3.0)."
             },
             "type": "library",
             "extra": {
