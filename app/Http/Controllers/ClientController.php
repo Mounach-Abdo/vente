@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\brand;
+use App\Client;
 use Illuminate\Http\Request;
 
-class brandController extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +23,7 @@ class brandController extends Controller
      */
     public function create()
     {
-       return view('brands.create');
+        return view('clients.create');
     }
 
     /**
@@ -35,36 +34,38 @@ class brandController extends Controller
      */
     public function store(Request $request)
     {
-        $brand = new Brand();
-        $brand->name_brand=$request->name;
-        $brand->save();
-        $type_picture='brands';
-        $picture=\App\Picture::store($request, $brand->id, $type_picture);
-        return redirect('brands/'.$brand->id);
+        $client = new Client;
+        $client->first_name = $request->input('first_name');
+        $client->last_name = $request->input('last_name');
+        $client->email = $request->input('email');
+        $client->save();
+        $type_picture='clients';
+        $picture= \App\Picture::store($request, $client->id, $type_picture);
+        return redirect('clients/'.$client->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\brand  $brand
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show($brand)
+    public function show($id)
     {
-        $brand = Brand::findOrFail($brand);
-        return view('brands.show',[
-            'brand'=>$brand
-        ]);
+        $client = Client::findOrFail($id);
+        return view('clients.show',[
+            'client'=>$client
+                ]);
         
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\brand  $brand
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit(brand $brand)
+    public function edit(Client $client)
     {
         //
     }
@@ -73,10 +74,10 @@ class brandController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\brand  $brand
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, brand $brand)
+    public function update(Request $request, Client $client)
     {
         //
     }
@@ -84,10 +85,10 @@ class brandController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\brand  $brand
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(brand $brand)
+    public function destroy(Client $client)
     {
         //
     }

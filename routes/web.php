@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('brands','BrandController');
+Route::resource('clients','ClientController');
 Route::resource('articles','ArticleController');
 
 Route::resource('categories','CategoryController');

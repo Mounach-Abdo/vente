@@ -1,36 +1,41 @@
 <?php
 
 namespace App;
+use App\Picture;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Picture extends Model
 {
+   
   public static function store($request, $id, $type_picture)
   {
-     if($request->hasFile('pic'))
+     if($request->hasFile('img'))
      {
-         $file = $request->file('pic')->store('pictures','public');
-         $picture=new Article();
-         $picture->name='pictures';
-         $picture->extention=$request->pic->extention;
-         $picture->path=$file;
-         $picture->picturable_id=$id;
-         $picture->picturable_type=$type_picture;
+         $file = $request->file('img')->store('pictures','public');
+         $picture=new Picture();
+         $picture->name='photo';
+         $picture->extention=$request->img->extension();
+         $picture->path = $file;
+         $picture->pictureable_id=$id;
+         $picture->pictureable_type=$type_picture;
          $picture->save();
      }
      return $picture;
-  }  
-
-  public function brand()
-  {
-     return $this->hasOne('App\brand');
-  }
-
-  public function picturable()
+     
+  }   
+  
+  public function pictureable()
   {
      return $this->morphTo();
   }
-}
 
+
+
+  /*public function brand()
+  {
+     return $this->hasOne('App\brand');
+  }*/
+
+ }
 

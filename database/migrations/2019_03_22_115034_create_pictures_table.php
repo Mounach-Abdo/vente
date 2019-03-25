@@ -18,8 +18,8 @@ class CreatePicturesTable extends Migration
             $table->string('name');
             $table->string('extention');
             $table->string('path');
-            $table->bigInteger('picturable_id');
-            $table->string('picturable_type');
+            $table->bigInteger('pictureable_id');
+            $table->string('pictureable_type');
             $table->timestamps();
         });
     }

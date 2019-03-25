@@ -2,7 +2,7 @@
 @section('content')
 <br><br>
 <div class="container">
-    <form action="/brands" method="post">
+    <form action="/brands" method="post" enctype="multipart/form-data">
         @csrf
    <div class="card">
         <div class="card-header">
@@ -16,7 +16,7 @@
                    <label for="" class="label label-default">brand name</label>
                </div>
                <div class="col-md-8">
-                   <input type="text" name="" id="" class="form-control" placeholder="EX: Asus" required>
+                   <input type="text" name="name" id="" class="form-control" placeholder="EX: ASUS" required>
                </div>
            </div>
            <div class="row">
@@ -29,7 +29,7 @@
                    <label for="" class="label label-default">Choose a picture for your brand</label>
                </div>
                <div class="col-md-8">
-               <input type="file" class="" accept="image/*" required>
+               <input type="file" name="img" id="img" required>
                
                </div>
            </div>
