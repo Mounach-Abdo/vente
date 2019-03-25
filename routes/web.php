@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('articles/vote{vote}{id}','RatingController@store');
 Route::resource('brands','BrandController');
 Route::resource('clients','ClientController');
 Route::resource('articles','ArticleController');

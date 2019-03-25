@@ -7,10 +7,21 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
     <meta name="csrf-token" content="{{csrf_token()}}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <style>
+    li a {
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+}
+a{
+    color:white;
+}
+    
+    </style>
     <title>Document</title>
 </head>
-<body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<body style="background-color:gray;">
+        <nav style="font-color:white;" class=" navbar navbar-expand-lg  bg-dark" style="display:block;:auto;margin-left:auto;">
                 <a class="navbar-brand" href="#">General menu</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -57,5 +68,6 @@
               </nav>
     @yield('content')
    <script src="{{asset('js/app.js')}}"></script>
+   <script src="{{ asset('jquery/jquery-3.3.1.min.js') }}"></script>
 </body>
 </html>
