@@ -9,6 +9,7 @@
         $rate = $article->ratings->sum('rating')/$article->ratings->count();
         ?>
             <div class="row" style="border-bottom:2px solid gold; width:auto;margin:auto;">
+            <div class="col-md-3"><img style="height:200px;width:200px;" class="rounded" src="{{ Storage::url($article->picture->path) }}" alt="Error picture not found !"></div>
             <div class="col-md-3">Name : {{ $article->name }}</div>
             <div class="col-md-3">Description : {{ $article->description }}</div>
             <div class="col-md-3">Price : {{ $article->price }}</div>

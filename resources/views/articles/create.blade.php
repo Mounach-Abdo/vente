@@ -5,7 +5,7 @@
         <div class="table">
             <h2 style="text-align:center;">Add a new product :</h2>
             <br>
-            <form action="/articles" method="POST">
+            <form action="/articles" method="POST" enctype="multipart/form-data">
                 @csrf
             <div class="row">
             <div class="col-md-6" style="text-align:right;">Name : </div><div class="col-md-6"><input type="text" name="name" value="{{ old('name') }}"></div><br><br>
@@ -18,6 +18,7 @@
                     <option value="{{ $category->id }}">{{$category->name }}</option>
                     @endforeach
                 </select></div><br><br>
+            <div class="col-md-6" style="text-align:right;">Chose a picture :  </div><div class="col-md-6"><input type="file" name="photo" value="{{ old('photo') }}"></div><br><br>
             </div>
             <!--<div class="col-md-6"><img src="" alt="Image not found !"></div>-->
             <div class="col-md-6" style="display:block;margin-left:auto;"><button type="submit" class="btn btn-success" >Create</button></div>

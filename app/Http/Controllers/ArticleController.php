@@ -54,6 +54,8 @@ class ArticleController extends Controller
         $article->quantity = $request->quantity;
         $article->category_id = $request->category;
         $article->save();
+        $type_picture = 'articles';
+        $picture=\App\Picture::store($request, $article->id, $type_picture);        
         return redirect('articles/'.$article->id);
     }
 
