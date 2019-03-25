@@ -5,14 +5,65 @@
         <div class="table">
             <h2 style="text-align:center;">List of articles :</h2>
         @foreach ($articles as $article)
-            <div class="row">
-            <div class="col-md-6">Name : {{ $article->name }}</div>
-            <div class="col-md-6">Description : {{ $article->description }}</div>
-            <div class="col-md-6">Price : {{ $article->price }}</div>
-            <div class="col-md-6">Quantity available : {{ $article->quantity }}</div>
-            <div class="col-md-6">Category :{{ $article->category }}</div>
-            <div class="col-md-6"><img src="" alt="Image not found !"></div>
+        <?php
+        $rate = $article->ratings->sum('rating')/$article->ratings->count();
+        ?>
+            <div class="row" style="border-bottom:2px solid gold; width:auto;margin:auto;">
+            <div class="col-md-3">Name : {{ $article->name }}</div>
+            <div class="col-md-3">Description : {{ $article->description }}</div>
+            <div class="col-md-3">Price : {{ $article->price }}</div>
+            <div class="col-md-3">Quantity available : {{ $article->quantity }}</div>
+            <div class="col-md-3">Category :{{ $article->category->name }}</div>
+            <div class="col-md-3">
+            Rating:
+                    <div class="star-rating">
+                          @if($rate == 0)
+                          <span style="color:black;" class="fa fa-star" ></span>
+                          <span style="color:black;" class="fa fa-star" ></span>
+                          <span style="color:black;" class="fa fa-star" ></span>
+                          <span style="color:black;" class="fa fa-star" ></span>
+                          <span style="color:black;" class="fa fa-star" ></span>
+                            {{ $rate }}
+                            @elseif($rate>=1 && $rate<2)
+                            <span style="color:orange;" class="fa fa-star checked" ></span>
+                            <span style="color:black;" class="fa fa-star" ></span>
+                            <span style="color:black;" class="fa fa-star" ></span>
+                            <span style="color:black;" class="fa fa-star" ></span>
+                            <span style="color:black;" class="fa fa-star" ></span>
+                              {{ $rate }}
+                              @elseif($rate>=2 && $rate<3)
+                              <span style="color:orange;" class="fa fa-star checked" ></span>
+                              <span style="color:orange;" class="fa fa-star checked" ></span>
+                              <span style="color:black;" class="fa fa-star" ></span>
+                              <span style="color:black;" class="fa fa-star" ></span>
+                              <span style="color:black;" class="fa fa-star" ></span>
+                                {{ $rate }}
+                                @elseif($rate>=3 && $rate<4)
+                                <span style="color:orange;" class="fa fa-star checked" ></span>
+                                <span style="color:orange;" class="fa fa-star checked" ></span>
+                                <span style="color:orange;" class="fa fa-star checked" ></span>
+                                <span style="color:black;" class="fa fa-star" ></span>
+                                <span style="color:black;" class="fa fa-star" ></span>
+                                  {{ $rate }}
+                                  @elseif($rate>=4 && $rate<5)
+                                   <span style="color:orange;" class="fa fa-star checked" ></span>
+                                   <span style="color:orange;" class="fa fa-star checked" ></span>
+                                   <span style="color:orange;" class="fa fa-star checked" ></span>
+                                   <span style="color:orange;" class="fa fa-star checked" ></span>
+                                   <span style="color:black;" class="fa fa-star" ></span>
+                                    {{ $rate }}
+                                      @elseif($rate==5)
+                                      <span style="color:orange;" class="fa fa-star checked" ></span>
+                                      <span style="color:orange;" class="fa fa-star checked" ></span>
+                                      <span style="color:orange;" class="fa fa-star checked" ></span>
+                                      <span style="color:orange;" class="fa fa-star checked" ></span>
+                                      <span style="color:orange;" class="fa fa-star checked" ></span>
+                                        {{ $rate }}
+                                          @endif
+                    </div>
+                    </div>
             </div>
+            <br>
         @endforeach
         </div>
     </div>

@@ -34,11 +34,11 @@ class RatingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
         $rating = new Rating();
-        $rating->rating = $resuest->rating;
-        $rating->article_id  = $result->article;
-        $rating->user_id = $rating->user;
+        $rating->rating = $request->rating;
+        $rating->article_id  = $request->article;
+        $rating->user_id = '1';          //get the user id when Abdessalam is done
         $rating->save();
         return back();
     }

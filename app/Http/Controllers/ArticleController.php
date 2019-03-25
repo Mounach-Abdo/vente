@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rating;
 use App\Article;
 use App\Category;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
+
         $articles = Article::all();
         return view('articles.index',['articles' => $articles]);
     }
@@ -64,7 +66,12 @@ class ArticleController extends Controller
     public function show($article)
     {
         $article = Article::findOrFail($article);
-        return view('articles.show',['article' => $article]);
+        $rate = "0";
+        if ($article->ratings != null) {  
+            $sum = $article->ratings->sum('rating');
+            $rate = $sum/$article->ratings->count();
+        }
+ return view('articles.show',['article' => $article,'rate'=>$rate]);
     }
 
     /**
