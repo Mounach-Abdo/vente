@@ -7,7 +7,8 @@
             <div class="row">
             <div class="col-md-6">Name : </div><div class="col-md-6">{{ $category->name }}</div><br><br>
             <div class="col-md-6">Description : </div><div class="col-md-6">{{ $category->description }}</div><br><br>
-            <div class="col-md-6"></div>
+            <div class="col-md-6">
+            </div>
             </div>
         </div>
     </div>

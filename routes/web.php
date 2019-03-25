@@ -20,3 +20,6 @@ Route::resource('clients','ClientController');
 Route::resource('articles','ArticleController');
 
 Route::resource('categories','CategoryController');
+
+Route::post('articles/{id}/{rate}','RateController@store');
+
