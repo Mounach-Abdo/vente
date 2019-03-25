@@ -16,6 +16,6 @@ class Article extends Model
         return $this->hasMany('App\Rating');
     }
     public function picture(){
-        return $this->hasOne('App\Picture', 'pictureable');
+        return $this->morphOne('App\Picture', 'pictureable');
     }
 }
