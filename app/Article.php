@@ -15,4 +15,7 @@ class Article extends Model
     public function ratings(){
         return $this->hasMany('App\Rating');
     }
+    public function picture(){
+        return $this->morphOne('App\Picture', 'pictureable');
+    }
 }
