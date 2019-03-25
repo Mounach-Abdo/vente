@@ -10,7 +10,7 @@ class Article extends Model
 {
     use softDeletes;
     public function category(){
-        return $this->belongsTo('App\Article');
+        return $this->belongsTo('App\Category');
     }
     public function ratings(){
         return $this->hasMany('App\Rating');

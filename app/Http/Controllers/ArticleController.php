@@ -69,7 +69,7 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($article);
         $rate = "0";
-        if ($article->ratings != null) {  
+        if ($article->ratings != null && $article->ratings->count()!=0 ) {  
             $sum = $article->ratings->sum('rating');
             $rate = $sum/$article->ratings->count();
         }

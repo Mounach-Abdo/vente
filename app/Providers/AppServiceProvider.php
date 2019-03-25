@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Providers;
-
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Relations\Relation;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -17,7 +14,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
-
     /**
      * Bootstrap any application services.
      *
@@ -30,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             'brands' => 'App\Brand',
             'clients' => 'App\Client',
+            'articles' => 'App\Article'
         ]);
     }
 }
