@@ -14,7 +14,7 @@
             <div class="col-md-3"><img style="height:200px;width:200px;" class="rounded" src="{{ Storage::url($article->picture->path) }}" alt="Error picture not found !"></div>
             <div class="col-md-3">Name : {{ $article->name }}</div>
             <div class="col-md-3">Description : {{ $article->description }}</div>
-            <div class="col-md-3">Price : {{ $article->price }}</div>
+            <div class="col-md-3">Price : {{ $article->price }}.00 MAD</div>
             <div class="col-md-3">Quantity available : {{ $article->quantity }}</div>
             <div class="col-md-3">Category :{{ $article->category->name }}</div>
             <div class="col-md-3">
