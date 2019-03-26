@@ -11,6 +11,18 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function auth(){
+        return view('clients.auth');
+    }
+    public function authenticate(Request $request){
+        $client = Client::findOrFail($request->email)->count()->get();
+        if ($client != null) {
+            if ($client->password == $request->password) {
+                $request->session(['client_id'=>$client->id]);
+                return view('/articles');
+            }
+        }
+    }
     public function index()
     {
         //

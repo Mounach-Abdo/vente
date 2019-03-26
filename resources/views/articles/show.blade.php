@@ -3,31 +3,14 @@
 
 
 <script>
-
 function voter()
         {
           var value = $( "input[type=radio][name=rating]:checked" ).val();
           var id = {{ $article->id }};
-          $.ajax({
-            url : "{{url('/articles/vote')}}",
-            type : "POST",
-            data : { 'rate' : value ,
-            'article_id' : id },
-            
-            success:function(data){//200 response comes here
-            
-              //Do what you want to do with processed data
-            }, 
-            error:function(e){
-            //Error handling
-            }
-          })
+          var good = 1;
+          window.location = "https://www.shop.com/articles/vote/"+value+'/'+id;
+          swal('Success','Thank\'s for your opinion !');
         }
-
-
-        <?php
-
-        ?>
 
 </script>
 <div class="container">

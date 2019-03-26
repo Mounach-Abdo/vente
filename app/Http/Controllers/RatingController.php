@@ -36,8 +36,8 @@ class RatingController extends Controller
     public function store($vote,$id)
     { 
         $rating = new Rating();
-        $rating->rating = $request->rating;
-        $rating->article_id  = $request->article;
+        $rating->rating = $vote;
+        $rating->article_id  = $id;
         $rating->user_id = '1';          //get the user id when Abdessalam is done
         $rating->save();
         return back();

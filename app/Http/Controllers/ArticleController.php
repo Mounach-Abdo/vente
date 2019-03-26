@@ -68,11 +68,8 @@ class ArticleController extends Controller
     public function show($article)
     {
         $article = Article::findOrFail($article);
-        $rate = "0";
-        if ($article->ratings != null && $article->ratings->count()!=0 ) {  
-            $sum = $article->ratings->sum('rating');
-            $rate = $sum/$article->ratings->count();
-        }
+        $rate = $article->ratings->avg('rating');
+        $rate = round($rate,2);
  return view('articles.show',['article' => $article,'rate'=>$rate]);
     }
 

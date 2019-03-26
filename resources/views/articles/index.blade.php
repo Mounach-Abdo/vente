@@ -6,9 +6,8 @@
             <h2 style="text-align:center;">List of articles :</h2>
         @foreach ($articles as $article)
         <?php
-        if ($article->ratings->count()!=0) {
-          $rate = $article->ratings->sum('rating')/$article->ratings->count();
-        }else{$rate = 0;}
+        $rate = $article->ratings->avg('rating');
+        $rate = round($rate,2);
         ?>
             <div class="row" style="border-bottom:2px solid gold; width:auto;margin:auto;">
             <div class="col-md-3"><img style="height:200px;width:200px;" class="rounded" src="{{ Storage::url($article->picture->path) }}" alt="Error picture not found !"></div>
