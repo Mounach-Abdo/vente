@@ -1,3 +1,4 @@
+@extends('layouts.session')
 @extends('layouts.master')
 @section('content')
 <br><br>

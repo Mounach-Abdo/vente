@@ -11,21 +11,35 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function auth(){
-        return view('clients.auth');
+    public function auth(Request $request){
+        $request->session()->put('user_id',3);
+
+       return view('/clients');
     }
     public function authenticate(Request $request){
-        $client = Client::findOrFail($request->email)->count()->get();
-        if ($client != null) {
+
+        $client = Client::findOrFail($request->email);
+        $client = $client->count();
+        if ($client != 0) {
             if ($client->password == $request->password) {
-                $request->session(['client_id'=>$client->id]);
+                $request->session()->put('user_id',$client->id);
                 return view('/articles');
+            }else {
+                return view('/clients');
             }
-        }
+        }         
+           else {
+               return 'wrong pass man !';
+            
+            }
+    }
+    public function disconnect(){
+         session()->forget('user_id'); 
+return view('/clients.auth');
     }
     public function index()
     {
-        //
+        return view('/clients.auth');
     }
 
     /**
@@ -46,14 +60,22 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'first_name' => 'required|max:50',
+            'last_name' => 'required|max:50',
+            'email' => 'required|unique:clients,email',
+            'password' => 'required|min:9|max:45'
+            ]);
         $client = new Client;
         $client->first_name = $request->input('first_name');
         $client->last_name = $request->input('last_name');
         $client->email = $request->input('email');
+        $client->password = $request->input('password');
         $client->save();
         $type_picture='clients';
         $picture= \App\Picture::store($request, $client->id, $type_picture);
-        return redirect('clients/'.$client->id);
+        $request->session()->put(['user_id' => $client->id]);
+        return redirect('/'.$client->id);
     }
 
     /**

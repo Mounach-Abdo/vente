@@ -5,7 +5,8 @@
         <div class="col-md-4"></div>
         <div class="col-md-4" style="margin-top:20%; box-shadow: gray 4px ;">
                 <div class="card"  class="shadow p-3  mb-5 bg-black rounded">
-                    <form action="clients/">
+                    <form action="/clients/auth" method="POST" >
+                        @csrf
                         <h2 style="text-align:center;">Sign in</h2>
                     <div class="col-md-12">
                         <label for="email">Email :</label>

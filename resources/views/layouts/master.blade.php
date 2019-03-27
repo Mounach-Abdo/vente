@@ -24,9 +24,6 @@ a{
 </head>
 <body style="background-color:#f7faff">
         <nav style="font-color:white;" class=" navbar navbar-expand-lg  bg-dark" style="display:block;:auto;margin-left:auto;">
-<?php $client = session('client_id') ;
-  ?>
-           @if($client != null)
                 <a class="navbar-brand" href="https://shop.com/articles">General menu</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -74,16 +71,10 @@ a{
                       </div>
                     </li>
                   </ul>
-                </div>
-                @else
-                <a class="navbar-brand" href="https://shop.com/clients/create">Register</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                @endif
               </nav>
     @yield('content')
    <script src="{{asset('js/app.js')}}"></script>
    <script src="{{ asset('jquery/jquery-3.3.1.min.js') }}"></script>
+
 </body>
 </html>

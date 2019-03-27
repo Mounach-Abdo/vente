@@ -15,7 +15,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="first_name">First name</label>
-                                    <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Ex: Jhon">
+                                    <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Ex: Jhon" value="{{  old('first_name') }}">
                                 </div>
                             </div>
                         </div>
@@ -23,7 +23,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="last_name">Last name</label>
-                                    <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Ex: Wick">
+                                    <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Ex: Wick" value="{{ old('last_name') }}">
                                 </div>
                             </div>
                         </div>
@@ -31,16 +31,32 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                         <label for="email">Email</label> 
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email@example.com" required></label>
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email@example.com" required value="{{ old('email') }}"></label>
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                            <label for="password">Password</label> 
+                                            <input type="password" name="password" id="password" class="form-control" placeholder="password" required value=""></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                                <label for="password">Repeat password</label> 
+                                                <input type="password" name="password2" id="password2" class="form-control" placeholder="password" required></label>
+                                        </div>
+                                    </div>
+                                </div>
             
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="">Upload your image</label>
-                                        <input type="file" name="img" id="img" required>
+                                        <input type="file" name="img" id="img" required value="{{ old('img') }}">
                                     </div>
                                 </div>
                             </div>

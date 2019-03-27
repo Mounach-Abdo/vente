@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'ClientController@auth');
+
 
 Route::get('articles/vote/{vote}/{id}','RatingController@store');
 Route::resource('brands','BrandController');

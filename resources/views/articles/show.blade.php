@@ -9,7 +9,6 @@ function voter()
           var id = {{ $article->id }};
           var good = 1;
           window.location = "https://www.shop.com/articles/vote/"+value+'/'+id;
-          swal('Success','Thank\'s for your opinion !');
         }
 
 </script>
