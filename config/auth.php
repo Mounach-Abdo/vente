@@ -46,6 +46,15 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'staff' => [
+            'driver' => 'session',
+            'provider' => 'staff',
+        ],
+        'client' => [
+            'driver' => 'session',
+            'provider' => 'client',
+        ]
+
     ],
 
     /*
@@ -70,11 +79,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'staff' => [
+            'driver' => 'eloquent',
+            'model' => App\Staff::class,
+        ],
+        'clients' => [
+            'driver' => 'eloquent',
+            'model' => App\Client::class,
+        ],
     ],
 
     /*
@@ -97,6 +109,11 @@ return [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
+        ],
+        'staff' => [
+            'provider' => 'staff',
+            'table' => 'password_resets',
+            'expire' => 30,
         ],
     ],
 
