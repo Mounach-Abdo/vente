@@ -8,7 +8,7 @@ function voter()
           var value = $( "input[type=radio][name=rating]:checked" ).val();
           var id = {{ $article->id }};
           var good = 1;
-          window.location = "https://www.shop.com/articles/vote/"+value+'/'+id;
+          window.location = "https://shop.com/articles/vote/"+value+'/'+id;
         }
 
 </script>

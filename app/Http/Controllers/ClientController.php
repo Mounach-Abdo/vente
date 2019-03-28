@@ -11,32 +11,6 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function auth(Request $request){
-        $request->session()->put('user_id',3);
-
-       return view('/clients');
-    }
-    public function authenticate(Request $request){
-
-        $client = Client::findOrFail($request->email);
-        $client = $client->count();
-        if ($client != 0) {
-            if ($client->password == $request->password) {
-                $request->session()->put('user_id',$client->id);
-                return view('/articles');
-            }else {
-                return view('/clients');
-            }
-        }         
-           else {
-               return 'wrong pass man !';
-            
-            }
-    }
-    public function disconnect(){
-         session()->forget('user_id'); 
-return view('/clients.auth');
-    }
     public function index()
     {
         return view('/clients.auth');
