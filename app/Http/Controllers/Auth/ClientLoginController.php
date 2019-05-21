@@ -14,7 +14,7 @@ class ClientLoginController extends Controller
      */
     public function __construct() 
     {
-        $this->middleware('guest:clients')->except('logout');
+        $this->middleware('guest:client')->except('logout');
     }
 
     /**
@@ -39,7 +39,8 @@ class ClientLoginController extends Controller
 
         if(Auth::guard('client')->attempt($request->only('email', 'password'), $request->remember))
         {
-            return redirect(route('clients-account'));
+            return redirect('/articles');
+            //return redirect(route('clients-account'));
         }
         return redirect()->back()->withInput()->withErrors(['password' => 'check your password']);
     }
@@ -47,7 +48,7 @@ class ClientLoginController extends Controller
     /**
      * 
      */
-    public function showLoginForm ()
+    public function showLoginForm()
     {
         return view('auth.clients.login');
     }
@@ -57,7 +58,7 @@ class ClientLoginController extends Controller
      */
     public function logout()
     {
-        Auth::guard('clients')->logout();
-        return redirect(url('/'));
+        Auth::guard('client')->logout();
+        return redirect(url('/clients/login'));
     }
 }

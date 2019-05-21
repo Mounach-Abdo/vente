@@ -1,21 +1,48 @@
 @extends('layouts.master')
 @section('content')
-<div class="container">
-    <div class="card">
-        <div class="table">
-            <br>
-            <h2 style="text-align:center;">Add a new category :</h2>
-            <br>
-            <form action="/categories" method="POST">
+<div class="form-group">
+
+        <form  action="/categories" method="POST" enctype="multipart/form-data">
+                <!--  -->
                 @csrf
-            <div class="row">
-            <div class="col-md-6">Name : <input type="text" name="name"></div>
-            <div class="col-md-6">Description : <input type="textarea" class="textarea" name="description"></div>
-            <!--<div class="col-md-6"><img src="" alt="Image not found !"></div>-->
-            <div class="col-md-6"><button type="submit" class="btn btn-success" >Create</button></div>
-            </div>
-            </form>
-        </div>
-    </div>
+                <div class="container">
+                <div class="card" style="margin-top: 15%">
+                    <h4 style="margin-left: 40%;margin-top: 2%x">Add a new category</h4>
+                    <div class="card-body">    
+                        <div class="row mt-3">
+                                <div class="col-md-4">
+                                        <label for=""> Category name :</label>
+                                </div>
+                                <div class="col-md-4">
+                                        <input type="text" name="name" id="name">
+                                </div>
+                        </div>
+                        <div class="row mt-3">
+                                <div class="col-md-4">
+                                        <label for=""> Designation Category :</label>
+                                </div>
+                                <div class="col-md-4">
+                                        <input type="textarea" name="description" id="description">
+                                </div>
+                        </div>
+                        <div class="row mt-3">
+                                <div class="col-md-4">
+                                        <label for=""> Choose the picture of the Category</label>
+                                </div>
+                                <div class="col-md-4">
+                                        <input type="file" name="img" id="img" required>
+                                </div>
+                        </div>
+                        <div class="row mt-4">
+                                <input type="submit" class="btn btn-primary" name="" id=" "
+                                        value="Upload the catégory picture">
+                        </div>
+                    </div>
+                    
+                    </div>
+                </div>
+        </form>
 </div>
 @endsection
+
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Rating;
 use App\Article;
+use App\Brand;
 use App\Category;
 use Illuminate\Http\Request;
 
@@ -18,9 +19,34 @@ class ArticleController extends Controller
     {
 
         $articles = Article::all();
-        return view('articles.index',['articles' => $articles]);
+        return view('articles.index',[
+            'articles' => $articles]);
     }
 
+    public function search( Request $request) {
+        $request->validate([
+            's' => 'required'
+        ]);
+        $s= $request->s;
+        $filteredProducts = Article::where('name', 'like', '%' . $s . '%')
+                                ->orWhere('description', 'like', '%' . $s . '%')->get();
+        if ($filteredProducts->count()) {
+            return view('articles.index')->with([
+                'articles' =>  $filteredProducts
+            ]);
+        } else {
+            
+            return redirect('/articles')->with([
+                'status' => 'search failed , please try again'
+            ]);
+        }
+        
+    }
+    
+    public function showmenu()
+    {
+        return view('staff.menu');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +55,11 @@ class ArticleController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('articles.create',['categories' => $categories]);
+        $brands = Brand::all();
+        return view('articles.create',[
+            'categories' => $categories,
+            'brands'=>$brands,
+            ]);
     }
 
     /**
@@ -40,19 +70,14 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|max:40',
-            'category' => 'required',
-            'description' => 'required|max:250',
-            'price' => 'required|numeric|max:999999',
-            'quantity' => 'required|numeric|max:999999'
-        ]);
+
         $article = new Article();
         $article->name = $request->name;
         $article->description =$request->description;
         $article->price = $request->price;
         $article->quantity = $request->quantity;
         $article->category_id = $request->category;
+        $article->brand_id = $request->brand;
         $article->save();
         $type_picture = 'articles';
         $picture=\App\Picture::store($request, $article->id, $type_picture);        
@@ -70,7 +95,9 @@ class ArticleController extends Controller
         $article = Article::findOrFail($article);
         $rate = $article->ratings->avg('rating');
         $rate = round($rate,2);
- return view('articles.show',['article' => $article,'rate'=>$rate]);
+        return view('articles.show',[
+            'article' => $article,
+            'rate'=>$rate]);
     }
 
     /**
@@ -79,10 +106,26 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit($article)
+    public function edit($id)
     {
-        $article = Article::findOrFail($article);
-        return view('articles.edit',['article' => $article]);
+        $article = Article::findOrFail($id);
+        $brands=Brand::all();
+        $categories=Category::all();
+        return view('articles.edit',[
+            'article' => $article,
+            'categories'=>$categories,
+            'brands'=>$brands
+            ]);
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Article  $article
+     * @return \Illuminate\Http\Response
+     */
+    public function showeditpage()
+    {
+        return view('articles.editing');
     }
 
     /**
@@ -93,13 +136,12 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$article)
-    {       
-         $request->validate([
-        'name' => 'required|max:40',
-        'category' => 'required',
+    {      
+        $request->validate([
+        'name' => 'required|max:80',
         'description' => 'required|max:250',
-        'price' => 'required|numeric|max:999999',
-        'quantity' => 'required|numeric|max:999999'
+        'price' => 'required|numeric|max:999999969999',
+        'quantity' => 'required|numeric|max:999999999'
     ]);
 
         $article = Article::findOrFail($article);
@@ -108,9 +150,32 @@ class ArticleController extends Controller
         $article->price = $request->price;
         $article->quantity = $request->quantity;
         $article->category_id = $request->category;
+        $article->brand_id = $request->brand;
         $article->save();
-        return redirect('article.index');
+        if($request->hasFile('img')){
+            $type_picture = 'articles';
+            $picture=\App\Picture::store($request, $article->id, $type_picture);  
+
+            $type_picture = 'articles';
+        $picture=\App\Picture::store($request, $article->id, $type_picture);        
+        return redirect('articles/'.$article->id);
+        }
+        return redirect('articles');
         
+    }
+
+    public function showtrash()
+    {
+        $articles = Article::onlyTrashed()->get();
+        return view('articles.trash',[
+            'articles' => $articles,
+        ]);
+        
+    }
+    public function restore($id)
+    {
+        Article::onlyTrashed()->find($id)->restore();
+        return back();
     }
 
     /**
@@ -123,6 +188,6 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($article);
         $article->delete();
-        return back();
+        return redirect('articles/');
     }
 }

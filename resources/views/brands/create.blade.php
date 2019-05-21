@@ -1,4 +1,3 @@
-@extends('layouts.session')
 @extends('layouts.master')
 @section('content')
 <br><br>
@@ -27,7 +26,7 @@
            </div>
            <div class="row">
                <div class="col-md-4">
-                   <label for="" class="label label-default">Choose a picture for your brand</label>
+                   <label for="" class="label label-default">Upload the brand's picture</label>
                </div>
                <div class="col-md-8">
                <input type="file" name="img" id="img" required>

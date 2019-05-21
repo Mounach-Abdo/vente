@@ -11,19 +11,16 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-6">
-                    <label for="" ><h4> Brand Name </h4></label>
+                <div class="col-md-4">
+                    <label for="" ><h2> Brand Name </h2></label>
                 </div>
                 <div class="col-md-6">
-                <label for="">{{$brand->name_brand}}</label>
+                <label for=""><h2>{{$brand->name_brand}}</h2></label>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <label for=""><h4> Brand Picture </h4></label>
-                </div>
-                <div class="col-md-6">
-                    <img src="{{Storage::url($brand->picture->path) }}" class="img-fluid" alt="erreur">
+                     <img src="{{Storage::url($brand->picture->path) }}" class="img-fluid" alt="erreur">
                 </div>
             </div>
         </div>

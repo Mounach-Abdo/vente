@@ -17,11 +17,12 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
-            $table->bigInteger('category_id');
             $table->float('price');
             $table->bigInteger('quantity');
+            $table->bigInteger('category_id');
+            $table->bigInteger('brand_id');
+            $table->timestamps(); 
             $table->softDeletes();
-            $table->timestamps();
         });
     }
 

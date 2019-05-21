@@ -1,21 +1,27 @@
 <?php
 
-namespace App;
+  namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\softDeletes;
+  use Illuminate\Database\Eloquent\Model;
+  use Illuminate\Database\Eloquent\softDeletes;
 
-class brand extends Model
-{
-    use softDeletes;
-    
-    public function picture()
-    {
-        return $this->morphOne('App\Picture','pictureable');
-    }
+  class Brand extends Model
+  {
+  use softDeletes;
+  /**
+  * Get the brand for the article.
+  */
+public function articles()
+  {
+  return $this->hasMany('App\Article');
+  }
+  /**
+  * Get the brand picture.
+  */
 
-    public function articles()
-    {
-        return $this->HasMany('App\Article');
-    }
-}
+  public function picture()
+  {
+  return $this->morphOne('App\Picture','pictureable');
+  }
+
+  }

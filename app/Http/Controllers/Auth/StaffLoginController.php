@@ -39,7 +39,7 @@ class StaffLoginController extends Controller
 
         if(Auth::guard('staff')->attempt($request->only('email', 'password'), $request->remember))
         {
-            return redirect(route('staff-account'));
+            return redirect('/staff/menu');
         }
         return redirect()->back()->withInput()->withErrors(['password' => 'check your password']);
     }
@@ -58,6 +58,6 @@ class StaffLoginController extends Controller
     public function logout()
     {
         Auth::guard('staff')->logout();
-        return redirect(url('/'));
+        return redirect(url('staff/login'));
     }
 }

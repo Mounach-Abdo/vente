@@ -51,7 +51,7 @@ class StaffRegisterController extends Controller
 
         Auth::guard('staff')->login($staff);
         
-        return auth()->guard('staff')->user();
+        return redirect('staff/account');
     }
 
     /**
@@ -63,3 +63,4 @@ class StaffRegisterController extends Controller
         return view('auth.staff.register');
     }
 }
+
