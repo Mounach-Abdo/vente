@@ -42,7 +42,7 @@ class ArticleController extends Controller
         }
         
     }
-    
+ 
     public function showmenu()
     {
         return view('staff.menu');

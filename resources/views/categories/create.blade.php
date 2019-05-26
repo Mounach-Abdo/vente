@@ -34,7 +34,7 @@
                                 </div>
                         </div>
                         <div class="row mt-4">
-                                <input type="submit" class="btn btn-primary" name="" id=" "
+                                <input style="margin-left: 30px" type="submit" class="btn btn-primary" name="" id=" "
                                         value="Upload the catégory picture">
                         </div>
                     </div>

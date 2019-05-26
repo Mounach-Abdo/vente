@@ -10,31 +10,29 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
-                <h1 style="font-weight: bold">{{$article->brand->name}}</h1>
+                <h1 style="font-weight: bold">{{$article->name}}</h1>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <img style="float: left;" src="{{ Storage::url($article->picture->path) }}" alt="Error picture not found !"  class="img-fluid"  >
             </div>
             
-          <div class="col-md-8" style="background-color: #f3f4f6;width: 520px;height:auto;" >
-
-
-              <h1 style="font-weight: bold">IN SHORT</h1>
-               <h3>{{ $article->name }}</h3>
-          <div class="row" >
+        <div class="col-md-6" style="background-color: #f3f4f6;width: 520px;height:auto;" >
+          <h2 style="font-weight: bold">IN SHORT</h2>
+               <h3 style="font-weight: bold; padding-top: 50px">{{ $article->name }}</h3>
+          <div class="row" style="">
                 <div class="col-md-8">
                    <h3>{{ $article->description }}</h3> 
                 </div>
           </div>
           <div class="row">
-                    <div class="col-md-8">
-                     <div style="color: red">  <h3><div id="price">{{ $article->price }}.00</div><div id="quote">DH TTC </div></h3></div></h3>  
-                    </div>
-            </div>
-            </div>
+             <div class="col-md-8">
+                 <div style="color: red">  <h3><div id="price">{{ $article->price }}.00</div><div id="quote">DH TTC </div></h3></div></h3>  
+             </div>
+          </div>
         </div>
+          </div>
              <h1>Rate</h1>
                 <fieldset class="rating">
                     <input type="radio" id="star5" onclick="voter()"  name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
@@ -50,74 +48,64 @@
                 </fieldset>
                 @if($rate > 0 && $rate<0.5)
                               <script>
-                                document.getElementById('starhalf').checked=true;
-                              </script>
-                                {{ $rate }}
-                                @elseif($rate>0.5 && $rate<=1)
+                                 document.getElementById('{{$article->id}}').children[0].checked=true;
+                               </script>
+                    @elseif($rate>0.5 && $rate<=1)
                                 <script>
-                                    document.getElementById('star1').checked=true;
+                                  document.getElementById('{{$article->id}}').children[1].checked=true;
                                 </script>
-                                  {{ $rate }}
-                                @elseif($rate>1 && $rate <= 1.5)
+                      @elseif($rate>1 && $rate <= 1.5)
                                 <script>
-                                    document.getElementById('star1half').checked=true;
+                                  document.getElementById('{{$article->id}}').children[2].checked=true;
                                 </script>
-                                  {{ $rate }}
-                                  @elseif($rate>1.5 && $rate<=2)
+                      @elseif($rate>1.5 && $rate<=2)
+                                <script>
+                                  document.getElementById('{{$article->id}}').children[3].checked=true;
+                                </script>
+                      @elseif($rate>2 && $rate<=2.5)
                                   <script>
-                                      document.getElementById('star2').checked=true;
+                                   document.getElementById('{{$article->id}}').children[4].checked=true;
                                   </script>
-                                    {{ $rate }}
-                                    @elseif($rate>2 && $rate<=2.5)
+                      @elseif($rate>=2.5 && $rate<=3)
+                                  <script>
+                                   document.getElementById('{{$article->id}}').children[5].checked=true;
+                                  </script>
+                      @elseif($rate>3 && $rate<=3.5)
+                                  <script>
+                                    document.getElementById('{{$article->id}}').children[6].checked=true;
+                                   </script>
+                      @elseif($rate>3.5 && $rate<=4)
+                                   <script>
+                                     document.getElementById('{{$article->id}}').children[7].checked=true;
+                                   </script>
+                      @elseif($rate>4 && $rate<=4.5)
                                     <script>
-                                        document.getElementById('star2half').checked=true;
+                                      document.getElementById('{{$article->id}}').children[9].checked=true;
                                     </script>
-                                      {{ $rate }}
-
-                                    @elseif($rate>=2.5 && $rate<=3)
+                      @elseif($rate>4.5 && $rate<=5)
                                     <script>
-                                        document.getElementById('star3').checked=true;
+                                    document.getElementById('{{$article->id}}').children[10].checked=true;
                                     </script>
-                                      {{ $rate }}
-                                      @elseif($rate>3 && $rate<=3.5)
-                                      <script>
-                                          document.getElementById('star3half').checked=true;
-                                      </script>
-                                        {{ $rate }}
-                                          @elseif($rate>3.5 && $rate<=4)
-                                          <script>
-                                              document.getElementById('star4').checked=true;
-                                          </script>
-                                            {{ $rate }}
-                                            @elseif($rate>4 && $rate<=4.5)
-                                            <script>
-                                                document.getElementById('star4half').checked=true;
-                                            </script>
-                                              {{ $rate }}
-                                              @elseif($rate>4.5 && $rate<=5)
-                                              <script>
-                                                  document.getElementById('star5').checked=true;
-                                              </script>
-                                                {{ $rate }}
-                                              @endif
-                                              @if(auth()->guard('staff')->user()!=null)
-                                              <div class="col-md-4">
-                                                      <form action="/articles/{{$article->id}}" method="post">
-                                                          @csrf
-                                                          <input  style="margin-top:20%;margin-left: 100%;  width:100% "  type="submit" class="btn btn-danger" name="" id="" value="Delete">
-                                                          <input type="hidden" name="_method" value="delete">
-                                                      </form>
-                                              </div>
-                                                   
-                                              </div>
-                                              @endif
+                      @endif
+                      
+                      @if(auth()->guard('staff')->user()!=null)
+                      <div class="col-md-4">
+                              <form action="/articles/{{$article->id}}" method="post">
+                                  @csrf
+                                  <input  style="margin-top:20%;margin-left: 100%;  width:100% "  type="submit" class="btn btn-danger" name="" id="" value="Delete">
+                                  <input type="hidden" name="_method" value="delete">
+                              </form>
+                      </div>
+                           
+                      </div>
+                      @endif
                         </div>
                     </div>
                 </div>
             </div>
 @endsection
          
-        <style>
+<style>
        
                               fieldset, label { margin: 0; padding: 0; }
                                   body{ margin: 20px; }

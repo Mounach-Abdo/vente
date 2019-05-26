@@ -14,6 +14,8 @@ Route::get('articles/vote/{vote}/{id}','RatingController@store')->middleware('au
 
 // **************** Brand rootes ... ****************
 Route::resource('brands','BrandController')->middleware('auth:staff');
+Route::get('brands', 'BrandController@index');
+
 
 // **************** Articles rootes ... ****************
 Route::post('articles/','ArticleController@store')->middleware('auth:staff');
@@ -27,7 +29,8 @@ Route::get('articles', 'ArticleController@index');
 Route::get('articles/editing','ArticleController@showeditpage');
 Route::get('articles/{id}', 'ArticleController@show');
 Route::delete('articles/{id}','ArticleController@destroy')->middleware('auth:staff');
-Route::post('articles','ArticleController@search');
+
+Route::post('/search','ArticleController@search');
 
 Route::post('articles/{id}/restore','ArticleController@restore')->middleware('auth:staff');
 

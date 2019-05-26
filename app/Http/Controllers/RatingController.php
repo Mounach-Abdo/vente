@@ -38,7 +38,7 @@ class RatingController extends Controller
         $rating = new Rating();
         $rating->rating = $vote;
         $rating->article_id  = $id;
-        $rating->user_id = '1';          //get the user id when Abdessalam is done
+        $rating->user_id = $id;          
         $rating->save();
         return redirect('articles/'.$id);
     }

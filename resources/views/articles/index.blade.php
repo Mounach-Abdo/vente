@@ -9,17 +9,18 @@
               <div class="carousel-item active">
                 <div class="row"> 
                   @foreach ($articles as $article)
-                  <div class="col-md-4" >
+                  <div class="col-md-4" style="max-width: 100%">
                      
                     <div class="item-box-blog" style="text-align: center">
                       <div class="item-box-blog-image" style="text-align: center">
                         <!--Date-->
                         <!-- <div class="item-box-blog-date bg-blue-ui white"> <span class="mon">Prod {{$article->id}}</span> </div>-->
                         <!--Image-->
-                        <figure>  
-                        <img style="height:250px;width:300px;max-width: 260px;margin-right: 5in"  src="{{Storage::url($article->picture->path) }}" alt=" picture not found !">
+                        <figure style="text-align: center">  
+                        <img style="height:250px;width:300px;max-width: 260px;margin-right: -1%;background-image: none" class="center"
+                         src="{{Storage::url($article->picture->path) }}" alt=" picture not found !">
                       
-                      </figure>
+                         </figure>
                       </div>
                       <div class="item-box-blog-body">
                         <!--Heading-->
@@ -38,7 +39,7 @@
                           ?>
                           <div class="row" style="padding-left: 50px">
                            <div class="col-md">
-                               <fieldset class="rating"> 
+                              <fieldset id="{{$article->id}}" class="rating">
                                     <input type="radio" id="star5"  name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
                                     <input type="radio" id="star4half"  name="rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
                                     <input type="radio" id="star4"  name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
@@ -52,43 +53,43 @@
                                 </fieldset>
                                           @if($rate > 0 && $rate<0.5)
                                                 <script>
-                                                      document.getElementById('starhalf').checked=true;
+                                                     document.getElementById('{{$article->id}}').children[0].checked=true;
                                                 </script>
                                                   @elseif($rate>0.5 && $rate<=1)
                                                   <script>
-                                                      document.getElementById('star1').checked=true;
+                                                      document.getElementById('{{$article->id}}').children[1].checked=true;
                                                     </script>
                                                   @elseif($rate>1 && $rate <= 1.5)
                                                   <script>
-                                                        document.getElementById('star1half').checked=true;
+                                                        document.getElementById('{{$article->id}}').children[2].checked=true;
                                                     </script>
                                                   @elseif($rate>1.5 && $rate<=2)
                                                     <script>
-                                                        document.getElementById('star2').checked=true;
+                                                        document.getElementById('{{$article->id}}').children[3].checked=true;
                                                       </script>
                                                   @elseif($rate>2 && $rate<=2.5)
                                                       <script>
-                                                          document.getElementById('star2half').checked=true;
+                                                          document.getElementById('{{$article->id}}').children[4].checked=true;
                                                         </script>
                                                   @elseif($rate>=2.5 && $rate<=3)
                                                       <script>
-                                                          document.getElementById('star3').checked=true;
+                                                          document.getElementById('{{$article->id}}').children[5].checked=true;
                                                         </script>
                                                   @elseif($rate>3 && $rate<=3.5)
                                                         <script>
-                                                            document.getElementById('star3half').checked=true;
+                                                            document.getElementById('{{$article->id}}').children[6].checked=true;
                                                           </script>
                                                   @elseif($rate>3.5 && $rate<=4)
                                                             <script>
-                                                            document.getElementById('star4').checked=true;
+                                                            document.getElementById('{{$article->id}}').children[7].checked=true;
                                                               </script>
                                                   @elseif($rate>4 && $rate<=4.5)
                                                               <script>
-                                                                  document.getElementById('star4half').checked=true;
+                                                                  document.getElementById('{{$article->id}}').children[9].checked=true;
                                                                 </script>
                                                   @elseif($rate>4.5 && $rate<=5)
                                                                 <script>
-                                                                document.getElementById('star5').checked=true;
+                                                                document.getElementById('{{$article->id}}').children[10].checked=true;
                                                                 </script>
                                                   @endif
                                                 </div>
@@ -123,6 +124,7 @@
 @endsection
 
 <style> 
+
 .cta-100 {
   margin-top: 100px;
   padding-left: 8%;
@@ -131,6 +133,7 @@
 }
 .col-md-4{
     padding-bottom:20px;
+    max-width: 100%;
 }
 
 .white {
@@ -140,7 +143,10 @@
 .bg-blue-ui {
   background-color: #708198 !important;
 }
-figure img{width:300px;}
+figure img{
+  width:300px;
+  text-align: center
+  }
 
 #blogCarousel {
   padding-bottom: 100px;

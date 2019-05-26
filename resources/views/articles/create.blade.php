@@ -54,9 +54,7 @@
 @endsection
 
 <style>
-    body{
-    background: -webkit-linear-gradient(left, #00FA9A, #00FFFF);
-}
+   
 
 .container  {
     border-radius: 3px;

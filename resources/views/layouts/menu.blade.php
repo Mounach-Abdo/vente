@@ -30,13 +30,10 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="https://shop.com/staff/account">Your profile</a>
+                    <a class="nav-link" href="https://shop.com/staff/account">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Css</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Bootstrap</a>
                 </li>
                 <!-- Dropdown -->   
                 <li class="nav-item dropdown">

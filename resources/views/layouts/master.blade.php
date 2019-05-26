@@ -15,66 +15,82 @@
 </head>
 <body style="background-color:#f7faff">
         <nav style="font-color:white;" class=" navbar navbar-expand-lg  bg-dark " >
-          <a href="http://shop.com/articles"> <img src="https://opgg-static.akamaized.net/images/lol/perk/8214.png" style="width: 100px;height: 100px;" alt=""></a>
-                <a class="navbar-brand" href="http://shop.com/articles" style="padding-bottom:6%"><h2>ⒶⒺⓇⓎ </h2></a>
+          <a  href="http://shop.com/articles"> <img  src="https://opgg-static.akamaized.net/images/lol/perk/8214.png" style="width: 100px;height: 100px;" alt=""></a>
+                <a class="navbar-brand" href="http://shop.com/articles" style="padding-bottom:8%"><h2>ⒶⒺⓇⓎ </h2></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> 
+                @if (Auth::guard('staff')->check())
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
+                        
                       <a class="nav-link" href="http://shop.com/articles">Home <span class="sr-only">(current)</span></a>
                     </li><li class="nav-item dropdown">
+
+               
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Articles
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="http://shop.com/articles/create">Create Articles</a>
                         <a class="dropdown-item" href="http://shop.com/articles/">Show Articles</a>
                         <a class="dropdown-item" href="http://shop.com/articles/trash">Trash </a>
                         <div class="dropdown-divider"></div>
-                      </div>
+                    </div>
                     </li>
                     <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Employes
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="https://shop.com/employes/create">Create Employe</a>
-                              <a class="dropdown-item" href="https://shop.com/employes/">Show employes</a>
-                              <a class="dropdown-item" href="https://shop.com/employes/trash">Trash </a>
-                              <div class="dropdown-divider"></div>
-                            </div>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Brands
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="http://shop.com/brands/create">Create a brand</a>
+                          <a class="dropdown-item" href="http://shop.com/brands/">Show brand</a>
+                          <div class="dropdown-divider"></div>
+                        </div>
                       </li>
-                    
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Categories
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="https://shop.com/categories/create">Create a category</a>
-                        <a class="dropdown-item" href="https://shop.com/categories/">Show Categories</a>
-                        <a class="dropdown-item" href="https://shop.com/categories/trash">Trash </a>
+                        <a class="dropdown-item" href="http://shop.com/categories/create">Create a category</a>
+                        <a class="dropdown-item" href="http://shop.com/categories/">Show Categories</a>
+                        <a class="dropdown-item" href="http://shop.com/categories/trash">Trash </a>
                         <div class="dropdown-divider"></div>
                       </div>
                     </li>
+                    <form class="form-inline md-form mr-auto mb-4"  action="/search" method="POST" style="padding-top: 10px">
+                      @csrf
+                      <input type="text" name="s" id="s" class="form-control" placeholder="Search" style="width: 300px">
+                      <button type="submit" class="btn btn-primary mt-2" style="margin-bottom: 6px"> Search</button>
+                    </form>
+                    
+                    <ul class="nav navbar-nav navbar-right" >
+                        <li ><a href="{{url('staff/account')}}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                        <li><a href="{{ url('staff/logout') }}"> <span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
                   </ul>
-
-                  <form class="form-inline md-form mr-auto mb-4"  action="/articles" method="POST">
+                @elseif(Auth::guard('client')->check()) 
+               
+                  <form class="form-inline md-form mr-auto mb-4"  action="/search" method="POST" style="margin-bottom: 11%">
                     @csrf
                     <input type="text" name="s" id="s" class="form-control" placeholder="Search" style="width: 300px">
-                    <button type="submit" class="btn btn-primary mt-2" style="margin-bottom: 6px"> Search</button>
+                    <button type="submit" class="btn btn-primary mt-2" > Search</button>
                   </form>
                   
-                  <ul class="nav navbar-nav navbar-right">
-                      <li><a href="{{url('staff/account')}}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                  <ul class="nav navbar-nav navbar-right" style="padding-left: 50px;padding-right: 10%" >
+                      <li ><a href="{{url('staff/account')}}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
                       <li><a href="{{ url('staff/logout') }}"> <span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
                   </ul>   
+                  
+                  
+                  </ul>  
+                   @endif
               </nav>          
-              @yield('content')
-             <script src="{{asset('js/app.js')}}"></script>
+    @yield('content')
+          <script src="{{asset('js/app.js')}}"></script>
           <script src="{{ asset('jquery/jquery-3.3.1.min.js') }}"></script>
-                <!-- Site footer -->
-   <footer class="site-footer">
+      <!-- Site footer -->
+<footer class="site-footer">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-6">
@@ -87,7 +103,7 @@
           <div class="col-xs-6 col-md-3">
             <h6>NOS OFFRES</h6>
             <ul class="footer-links">
-              <li><a href="#">Nos marques</a></li>
+              <li><a href="http://shop.com/brands">Our brands</a></li>
               <li><a href="#/">Ecouteurs</a></li>
               <li><a href="#">Jeux & consoles</a></li>
               <li><a href="#">Tablettes</a></li>
